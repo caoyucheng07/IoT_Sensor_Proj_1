@@ -8,22 +8,16 @@ This project implements a full-stack embedded IoT system that:
 - Works from anywhere (not same WiFi)
 
 ## Architecture
-+-------------+      I2C       +-------------+
-|   BME280    |--------------> |    STM32    |
-+-------------+                | (Real-time) |
-                               +------+------+
-                                      |
-                                     UART
-                                      |
-                               +------+------+
-                               |    ESP32    |
-                               |  (Network)  |
-                               +------+------+
-                                      |
-                                    MQTT/TLS
-                                      |
-                               +------+------+
-                               |   HiveMQ    |
-                               +------+------+
-                                      |
-                                  Web / Mobile
+[BME280 Sensor]
+      │ I2C
+      ▼
+[STM32 (Real-time Control)]
+      │ UART
+      ▼
+[ESP32 (Network + MQTT/TLS)]
+      │ Internet
+      ▼
+[HiveMQ Broker]
+      │
+      ▼
+[Web / Mobile UI]
