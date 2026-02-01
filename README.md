@@ -7,5 +7,9 @@ This project implements a full-stack embedded IoT system that:
 - Allows real remote control of appliances via IR
 - Works from anywhere (not same WiFi)
 
-## Architecture
-BME280 → STM32 (real-time) → UART → ESP32 (MQTT/TLS) → HiveMQ → Web/Mobile
+## System Architecture:
+- Sensor Layer: BME280 (I2C) → STM32F103 (real-time acquisition)
+- Control Layer: STM32 IR decoding & replay (36 kHz, timer-based)
+- Communication Layer: STM32 ↔ ESP32 (UART)
+- Network Layer: ESP32 → MQTT over TLS → HiveMQ Cloud
+- Application Layer: Web / Mobile client for monitoring & control
