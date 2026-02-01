@@ -6,3 +6,24 @@ This project implements a full-stack embedded IoT system that:
 - Sends data to cloud via MQTT (HiveMQ)
 - Allows real remote control of appliances via IR
 - Works from anywhere (not same WiFi)
+
+## Architecture
++-------------+      I2C       +-------------+
+|   BME280    |--------------> |    STM32    |
++-------------+                | (Real-time) |
+                               +------+------+
+                                      |
+                                     UART
+                                      |
+                               +------+------+
+                               |    ESP32    |
+                               |  (Network)  |
+                               +------+------+
+                                      |
+                                    MQTT/TLS
+                                      |
+                               +------+------+
+                               |   HiveMQ    |
+                               +------+------+
+                                      |
+                                  Web / Mobile
